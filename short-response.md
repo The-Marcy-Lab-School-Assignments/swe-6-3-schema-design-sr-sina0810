@@ -21,9 +21,6 @@ The table below stores data for a library's checkout system. Identify every norm
 - There is no unique primary key for book_id, which makes it difficult to identify the exact book.
 - There is repeated data in multiple columns. For example, patron information repeats every time a book is checked out.
 
-
-
-I would fix it by creating multiple tables:
 - A patrons table to store patron_id, patron_name, and patron_email so patron information is never repeated.
 - A books table to store book_id, book_title, and author_name so book information is never repeated.
 - A genres table to store each genre as its own row instead of cramming multiple genres into one cell.
@@ -36,9 +33,9 @@ Explain the difference between one-to-many relationships and many-to-many relati
 
 **Your answer:**
 
-- A `One-to-many `relationships is a a row in a table can be referenced by many rows in the table. For example: one team can have many players. In a relational database the foreign key represented on the `many` side, so many players point back to one team. 
+- A `One-to-many `relationships are row in a table can be referenced by many rows in the table. For example: one team can have many players but each player belongs to only one team. In a relational database the foreign key is represented on the `many` side, so many players point back to one team. 
 
-- A `many-to-many` relationships is where rows in a table can be referenced by many rows in the other tables. For example: one player can play in many games, and game can have many players. In a relational database, this can't be represented with just a foreign key, that is why we need `association/bridge` that connects two tables together. 
+- A `many-to-many` relationships is where rows in a table can be referenced by many rows in aother tables. For example: one player can play in many games, and game can have many players. In a relational database, this can't be represented with just a foreign key, that is why we need `association/bridge` that connects two tables together. 
 
 ## Question 3
 
@@ -46,8 +43,8 @@ What is referential integrity? How does PostgreSQL enforce it, and why does this
 
 **Your answer:**
 
-- A referential integrity means a foreign key value must not be NULL, it should reference to something that already exists. 
-- The PostgreSQL enforece it automatically. It checks every insert, update, and delete agaisnt anything that is not matching the insert and the vlaues for it. 
+- Referential integrity means every foreign key value in a table must enforces a value that actually exists in the parent table. 
+- PostgreSQL enforece it automatically. It checks every insert, update, and delete against anything that does not matching the insert and the values for it. 
 - The table has to exist before we are able to reference it. Also, we can't drop a table that other tables are still pointing to, so we have to first drop the (child table) and then we are able to drop the (parent table). 
 
 
